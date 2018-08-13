@@ -116,7 +116,7 @@ void hashMapDelete(HashMap *map) {
 }
 
 /**
- * Returns a pointer to the value of the link with the given key  and skip traversing as well. Returns NULL
+ * Returns a pointer to the value of the link with the given key and skip traversing as well. Returns NULL
  * if no link with that key is in the table.
  * 
  * Use HASH_FUNCTION(key) and the map's capacity to find the index of the
@@ -378,18 +378,14 @@ float hashMapTableLoad(HashMap *map) {
  */
 void hashMapPrint(HashMap *map) {
     assert(map != NULL);
-    printf("\n");
-    //printf("\n--- Printing hashmap (capacity: %i, size: %i) ---\n", map->capacity, map->size);
     for (int i = 0; i < hashMapCapacity(map); i++) {
         // Loop through the buckets
         struct HashLink *currentLink = map->table[i];
-        if (currentLink == NULL) {
-            printf("Bucket %i: EMPTY\n", i);
-        } else {
-            printf("Bucket %i values:\n", i);
+        if (currentLink != NULL) {
+            printf("\nBucket %i -> ", i);
             while (currentLink != NULL) {
                 // Loop through the links in the bucket
-                printf("--> address: %p, key: %s, value: %i, next: %p\n", currentLink, currentLink->key, currentLink->value, currentLink->next);
+                printf("(%s, %i) -> ", currentLink->key, currentLink->value);
                 currentLink = currentLink->next;
             }
         }
