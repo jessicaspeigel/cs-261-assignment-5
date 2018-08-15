@@ -8,7 +8,7 @@ add_executable(assignment_5
         CuTest.h
         hashMap.c
         hashMap.h
-        main.c
-#        spellChecker.c
+#        main.c
+        spellChecker.c
 #        tests.c
         )
